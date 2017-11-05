@@ -22,7 +22,7 @@ for root,dirs,files in os.walk("D:\BE_DB\BE - Backup - 31-05-2017"):
 
 if((idx==1) | (idx==4) | (idx==5)):
             continue
-        else:
+else:
             shutil.copy(os.path.join(dir,str(value)),dir1)
         
         #print(c)
