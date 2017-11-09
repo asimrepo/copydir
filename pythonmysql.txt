@@ -1,0 +1,39 @@
+#task which i failed once to accomplish
+import pymysql
+connection=pymysql.connect(host="localhost",user="root",password="oracle",db="test")
+cursor=connection.cursor()
+sql=("select temp,day from tab")
+cursor.execute(sql)
+data=cursor.fetchall()
+cursor.close()
+
+connection=pymysql.connect(host="localhost",user="root",password="oracle",db="test")
+cursor=connection.cursor()
+sql1=('select avg(temp*temp) from tab where day=\"sunday"')
+cursor.execute(sql1)
+data1=cursor.fetchall()
+cursor.close()
+print(list(data1[0]))
+data=list(data)
+c3=[];c1=[];c2=[];c4=[];c5=[]
+for i in range(len(data)):
+    c3.append(list(data[i]))    #list=of-list
+for i in range(len(c3)):
+    c1.append(c3[i][0])         #first column temp data
+    c2.append(c3[i][1])         #second column day data
+#print(c2,c1)
+for i in range(len(c2)):
+    if(c2[i]=="sunday"):
+        c4.append(i)            #indeces of only those item where day is sunday
+#print(c4)
+count=0;sum=0;mult=0;result=0
+for i in range(len(c4)):
+    c5.append(c1[c4[i]])     #c5 has only those values where day is sunday
+    sum+=c5[i]
+    mult=c5[i]*c5[i]
+    result+=mult
+
+    count+=1
+
+print("Average of a number is " +str(sum/count))
+print("average of a number is " +str(round(result/count)))
